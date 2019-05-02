@@ -108,5 +108,6 @@ if __name__ == '__main__':
         img_src = input('请输入需要检测的本地图片路径:')
         if img_src == '0':
             break
+        img_src = "pngImg/" + img_src + ".png"
         baiduDetect = BaiduPicIndentify(img_src)
         baiduDetect.detect_face()
