@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 import shutil
 import sys
-
+from skimage import transform
 #批量改变图片的格式和尺寸
 image_size_width = 640
 image_size_height = 580
@@ -56,7 +56,7 @@ def changepng(source_path,types):
 
 #按照指定图像大小调整尺寸
 def resize_image(image, height, width):
-     top, bottom, left, right = (0, 0, 0, 0)
+     #top, bottom, left, right = (0, 0, 0, 0)
 
      #获取图像尺寸
      h, w, _ = image.shape
@@ -64,7 +64,13 @@ def resize_image(image, height, width):
      #对于长宽不相等的图片，找到最长的一边
      longest_edge = max(h, w)
 
+     scale = round(850*1.0/longest_edge, 1)
+     print(scale)
+     width = int(w * scale)
+     height = int(h * scale)
      #计算短边需要增加多上像素宽度使其与长边等长
+
+     '''
      if h < longest_edge:
          dh = longest_edge - h
          top = dh // 2
@@ -81,9 +87,9 @@ def resize_image(image, height, width):
 
      #给图像增加边界，是图片长、宽等长，cv2.BORDER_CONSTANT指定边界颜色由value指定
      constant = cv2.copyMakeBorder(image, top , bottom, left, right, cv2.BORDER_CONSTANT, value = BLACK)
-
      #调整图像大小并返回
-     return cv2.resize(constant, (height, width))
+     '''
+     return cv2.resize(image, (width, height))
 
 #转化图片尺寸的函数
 

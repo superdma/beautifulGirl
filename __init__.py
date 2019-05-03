@@ -98,7 +98,7 @@ class BaiduPicIndentify:
 
         (filepath, tempfilename) = os.path.split(self.img_src)
         (filename, extension) = os.path.splitext(tempfilename)
-        img_save_path = 'G:/img'+tempfilename
+        img_save_path = 'G:/img/'+tempfilename
         cv2.imencode('.jpg', img)[1].tofile(img_save_path)
         #cv2.imwrite(img_save_path, img)
 
@@ -108,6 +108,6 @@ if __name__ == '__main__':
         img_src = input('请输入需要检测的本地图片路径:')
         if img_src == '0':
             break
-        img_src = "pngImg/" + img_src + ".png"
+        img_src = "finalImg/" + img_src + ".png"
         baiduDetect = BaiduPicIndentify(img_src)
         baiduDetect.detect_face()
